@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  traefik:
+    image: traefik:${TAG}
+    container_name: traefik
+    hostname: traefik
+    env_file:
+      - .env
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/etc/traefik/traefik.yml
+      - ./acme.json:/acme.json
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.api.loadbalancer.server.port=8080
+      - traefik.http.routers.api.rule=Host(`${HOST_FQDN}`)     
+      - traefik.http.routers.api.service=api@internal
+      - traefik.http.routers.api.entrypoints=websecure
+      - traefik.http.routers.api.middlewares=auth
+      - traefik.http.middlewares.auth.basicauth.users=$AUTH_USER:$AUTH_PASSWORD      
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external:
+      name: ${NETWORK_NAME}
