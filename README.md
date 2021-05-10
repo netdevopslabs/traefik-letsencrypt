@@ -1,17 +1,17 @@
 # Traefik with let's encrypt and docker
 
-# Components
+## Components
 
 - [Traefik](https://doc.traefik.io/traefik/): [reverse-proxy](https://en.wikipedia.org/wiki/Reverse_proxy) used for deploying microservices
 - [Let's Encrypt](https://letsencrypt.org/): free certificate authority
 - Docker
 
-# Environment variables
+## Environment variables
 
 - TAG
   - `Traefik image tag`
 - NETWORK_NAME
-  - [Docker network name](https://docs.docker.com/network/)
+  - `Docker network name`
 - HOST_FQDN
   - `Dashboard domain name`
 - AUTH_USER
@@ -19,19 +19,19 @@
 - AUTH_PASSWORD
   - `Dashboard password`
 
-# Getting started
+## Getting started
 
-## First time setup
+### First time setup
 
 ```bash
 ./setup.sh
 ```
-## Set environment variables
+### Set environment variables
 
 ```bash
 vim .env
 ```
-## Run
+### Run
 
 ```bash
 docker-compose up -d
