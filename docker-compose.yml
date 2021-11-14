@@ -1,8 +1,8 @@
-version: '3.7'
+version: "3.7"
 
 services:
   traefik:
-    image: traefik:${TAG}
+    image: traefik:${TRAEFIK_VERSION}
     container_name: traefik
     hostname: traefik
     env_file:
@@ -17,7 +17,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.services.api.loadbalancer.server.port=8080
-      - traefik.http.routers.api.rule=Host(`${HOST_FQDN}`)     
+      - traefik.http.routers.api.rule=Host(`${APP_FQDN}`)     
       - traefik.http.routers.api.service=api@internal
       - traefik.http.routers.api.entrypoints=websecure
       - traefik.http.routers.api.middlewares=auth

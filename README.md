@@ -10,11 +10,11 @@
 
 ## Environment variables
 
-- TAG
+- TRAEFIK_VERSION
   - `Traefik image tag`
 - NETWORK_NAME
   - `Docker network name`
-- HOST_FQDN
+- APP_FQDN
   - `Dashboard domain name`
 - AUTH_USER
   - `Dashboard user`
